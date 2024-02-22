@@ -1,0 +1,37 @@
+- hosts: localhost
+  vars_files:
+    - aws_credentials.yml
+    - aws_ec2_configs.yml
+  tasks:
+    - name: Installing haproxy
+      package:
+        name: haproxy
+        state: present
+
+    - name: Getting info of EC2 instances
+      amazon.aws.ec2_instance_info:
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_access_key }}"
+        region: "{{ region_name }}"
+        filters:
+          "tag:Name": "ansible-managed-servers"
+          instance-state-name: ["running"]
+      register: ec2_info
+
+    - name: Setting private_ip variable
+      set_fact:
+        private_ip: "{{ ec2_info.instances | map(attribute='private_ip_address') | list }}"
+
+    - name: Displaying fetched IP addresses
+      debug:
+        var: private_ip
+
+    - name: Dynamically updating /etc/haproxy/haproxy.cfg
+      template:
+        src: haproxy.j2
+        dest: /etc/haproxy/haproxy.cfg
+
+    - name: Restarting haproxy service
+      service:
+        name: haproxy
+        state: restarted
