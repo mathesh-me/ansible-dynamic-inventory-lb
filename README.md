@@ -10,7 +10,7 @@ In this Project, I utilized Ansible automation to streamline the provisioning an
 
 ## Architecture 🏗️
 
-// Architecture Diagram
+![Dynamic Inventory Load Balancing using Ansible](https://github.com/mathesh-me/ansible-dynamic-inventory-lb/assets/144098846/356cb327-77c6-4110-8df5-d7dd02a06a13)
 
 ## Features 🌟
 
@@ -30,39 +30,39 @@ Follow these steps to use this repository:
 
 ### Getting Started 🚦
 
-1. Clone the repository to your local machine:
+1. **Clone the repository to your local machine:**
 
    ```bash
    git clone https://github.com/mathesh-me/ansible-dynamic-inventory-lb
     ```
 
-2. Change the directory to the cloned repository:
+2. **Change the directory to the cloned repository:**
 
     ```bash
     cd ansible-dynamic-inventory-lb
     ```
-3. Update the `aws_access_key` and `aws_secret_key` in the `aws_credentials.yml` file.
+3. **Update the `aws_access_key` and `aws_secret_key` in the `aws_credentials.yml` file.**
 
-4. Update the `key.pem` file with your AWS key pair.
+4. **Update the `key.pem` file with your AWS key pair.**
 
-5. Update the `aws_ec2_configs.yml` file with your EC2 instance configurations.
+5. **Update the `aws_ec2_configs.yml` file with your EC2 instance configurations.**
 
-6. Run the `create_instance.yml` playbook to create the EC2 instances:
+6. **Run the `create_instance.yml` playbook to create the EC2 instances:**
 
     ```bash
     ansible-playbook create_instance.yml
     ```
-7. Run the `httpd.yml` playbook to install the Apache HTTP Server on the EC2 instances:
+7. **Run the `httpd.yml` playbook to install the Apache HTTP Server on the EC2 instances:**
 
     ```bash
     ansible-playbook httpd.yml
     ```
-8. Run the `load_balancer.yml` playbook to create the dynamic inventory:
+8. **Run the `load_balancer.yml` playbook to create the dynamic inventory:**
 
     ```bash
     ansible-playbook load_balancer.yml
     ```
-9. Now you can access the load balancer using the public IP address of the load balancer on port 5000.
+9. **Now you can access the load balancer using the public IP address of the load balancer on port 5000.**
 
 
 ## Technologies Used 🛠️
