@@ -1,0 +1,25 @@
+- hosts: all
+  tasks:
+    - name: Installing Httpd Server
+      package:
+        name: httpd
+        state: present
+
+    - name: Copying index.html file from Master to Managed Node
+      copy:
+        src: index.html
+        dest: /var/www/html
+        mode: '666'
+
+    - name: Copying python_cgi_ip.py file to /var/www/cgi-bin/ip.py location
+      copy:
+        src: python_cgi_ip.py
+        dest: /var/www/cgi-bin/ip.py
+
+    - name: Making /var/www/cgi-bin/ip.py file Executable
+      command: "chmod +x /var/www/cgi-bin/ip.py"
+
+    - name: Starting httpd service
+      service:
+        name: httpd
+        state: started

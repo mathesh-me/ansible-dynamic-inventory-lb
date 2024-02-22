@@ -1,0 +1,44 @@
+- hosts: localhost
+  vars_files:
+    - aws_credentials.yml
+    - aws_ec2_configs.yml
+  tasks:
+    - name: Installing Python pip
+      package:
+        name: python3-pip
+        state: present
+
+    - name: Installing boto3 Module
+      pip:
+        name: boto3
+
+    - name: Provisioning EC2 instance
+      amazon.aws.ec2_instance:
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_access_key }}"
+        region: "{{ region_name }}"
+        instance_type: "{{ instance_type }}"
+        image_id: "{{ ami }}"
+        key_name: "{{ key_pair }}"
+        count: "{{ count }}"
+        security_group: "{{ sg_name }}"
+        tags:
+          Name: "{{ instance_name }}"
+      register: ec2_data
+
+    - name: Printing EC2 Data
+      debug:
+        var: ec2_data
+
+    - name: Setting up private_ip variable
+      set_fact:
+        private_ip: "{{ ec2_data.instances | map(attribute='private_ip_address') | list }}"
+
+    - name: Printing IP address
+      debug:
+        var: private_ip
+
+    - name: Dynamically Updating IP address of EC2 instances in inventory file
+      template:
+        src: inventory.j2
+        dest: inventory
