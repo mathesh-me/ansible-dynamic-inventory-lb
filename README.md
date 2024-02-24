@@ -47,22 +47,29 @@ Follow these steps to use this repository:
 
 5. Update the `aws_ec2_configs.yml` file with your EC2 instance configurations.
 
-6. Run the `create_instance.yml` playbook to create the EC2 instances:
+6. Run the `haproxy.yml` playbook to install HAProxy on the localhost:
+
+    ```bash
+    ansible-playbook haproxy.yml
+    ```
+7. Update the haproxy.j2 file as per instructions in the file.
+
+8. Run the `create_instance.yml` playbook to create the EC2 instances:
 
     ```bash
     ansible-playbook create_instance.yml
     ```
-7. Run the `httpd.yml` playbook to install the Apache HTTP Server on the EC2 instances:
+9. Run the `httpd.yml` playbook to install the Apache HTTP Server on the EC2 instances:
 
     ```bash
     ansible-playbook httpd.yml
     ```
-8. Run the `load_balancer.yml` playbook to create the dynamic inventory:
+10. Run the `load_balancer.yml` playbook to create the dynamic inventory:
 
     ```bash
     ansible-playbook load_balancer.yml
     ```
-9. Now you can access the load balancer using the public IP address of the load balancer on port 5000.
+11. Now you can access the load balancer using the public IP address of the load balancer on port 5000.
 
 
 ## Technologies Used 🛠️
@@ -78,7 +85,7 @@ Follow these steps to use this repository:
 
 ## Blog Post 📝
 
-- [Medium](Link will be added soon)
+- [Medium](https://medium.com/@mathesh-me/ansible-project-dynamic-inventory-load-balancing-with-ansible-eb6734db08dc)
 - In this blog post, I have explained How to do this project step by step. If you wnat to develop this project from scratch, you can follow the blog post. 
 
 ## License 📜
