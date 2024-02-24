@@ -1,0 +1,11 @@
+- hosts: localhost
+  tasks:
+    - name: Installing haproxy
+      package:
+        name: haproxy
+        state: present
+
+    - name: Starting haproxy service
+      service:
+        name: haproxy
+        state: started
