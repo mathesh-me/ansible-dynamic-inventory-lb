@@ -3,11 +3,6 @@
     - aws_credentials.yml
     - aws_ec2_configs.yml
   tasks:
-    - name: Installing haproxy
-      package:
-        name: haproxy
-        state: present
-
     - name: Getting info of EC2 instances
       amazon.aws.ec2_instance_info:
         aws_access_key: "{{ aws_access_key }}"
