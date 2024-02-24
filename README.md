@@ -10,7 +10,7 @@ In this Project, I utilized Ansible automation to streamline the provisioning an
 
 ## Architecture 🏗️
 
-// Architecture Diagram
+![Dynamic Inventory Load Balancing using Ansible](https://github.com/mathesh-me/ansible-dynamic-inventory-lb/assets/144098846/356cb327-77c6-4110-8df5-d7dd02a06a13)
 
 ## Features 🌟
 
@@ -30,22 +30,22 @@ Follow these steps to use this repository:
 
 ### Getting Started 🚦
 
-1. Clone the repository to your local machine:
+1. **Clone the repository to your local machine:**
 
    ```bash
    git clone https://github.com/mathesh-me/ansible-dynamic-inventory-lb
     ```
 
-2. Change the directory to the cloned repository:
+2. **Change the directory to the cloned repository:**
 
     ```bash
     cd ansible-dynamic-inventory-lb
     ```
-3. Update the `aws_access_key` and `aws_secret_key` in the `aws_credentials.yml` file.
+3. **Update the `aws_access_key` and `aws_secret_key` in the `aws_credentials.yml` file.**
 
-4. Update the `key.pem` file with your AWS key pair.
+4. **Update the `key.pem` file with your AWS key pair.**
 
-5. Update the `aws_ec2_configs.yml` file with your EC2 instance configurations.
+5. **Update the `aws_ec2_configs.yml` file with your EC2 instance configurations.**
 
 6. Run the `haproxy.yml` playbook to install HAProxy on the localhost:
 
